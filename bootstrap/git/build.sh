@@ -14,6 +14,7 @@ TASK=fetch
 
 DISTFILES="https://mirrors.edge.kernel.org/pub/software/scm/git/$DISTVER.$DISTSUFFIX"
 UNPACKCOMD="tar -xJf"
+PATCHLEVEL=1
 TASK=fetch
 package_init "$@"
 CONFIGURE_CMD="./configure 
@@ -28,8 +29,24 @@ CONFIGURE_CMD="./configure
 		#--without-iconv
 
 package_fetch
-package_patch
-package_build
+package_patch $PATCHLEVEL
+if [ "$TASK" == "build" ]
+then
+  echo "Building"
+  cd "$WORKDIR"
+  # clean up if we have a previous build
+  #if [ -e "Makefile" ]; then
+  #  make clean || true
+  #  make distclean || true
+  #fi
+  # configure
+  autoconf
+  eval $CONFIGURE_CMD
+  eval $MAKE_PREFIX make $MYMAKEFLAGS || \
+        eval $MAKE_PREFIX make
+  TASK=install
+fi
+
 package_install
 package_bundle
 
