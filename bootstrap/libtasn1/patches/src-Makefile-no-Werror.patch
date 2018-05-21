@@ -1,0 +1,11 @@
+--- src/Makefile.orig	2018-05-21 20:20:33.000000000 +0200
++++ src/Makefile	2018-05-21 20:20:43.000000000 +0200
+@@ -827,7 +827,7 @@
+ VERSION = 4.9
+ WARN_CFLAGS =  -W -Wabi -Waddress -Wall -Warray-bounds -Wattributes -Wbad-function-cast -Wbuiltin-macro-redefined -Wcast-align -Wchar-subscripts -Wclobbered -Wcomment -Wcomments -Wcoverage-mismatch -Wcpp -Wdeprecated -Wdeprecated-declarations -Wdisabled-optimization -Wdiv-by-zero -Wdouble-promotion -Wempty-body -Wendif-labels -Wenum-compare -Wextra -Wformat-contains-nul -Wformat-extra-args -Wformat-nonliteral -Wformat-security -Wformat-y2k -Wformat-zero-length -Wignored-qualifiers -Wimplicit -Wimplicit-function-declaration -Wimplicit-int -Winit-self -Winline -Wint-to-pointer-cast -Winvalid-pch -Wjump-misses-init -Wlogical-op -Wmain -Wmissing-braces -Wmissing-declarations -Wmissing-field-initializers -Wmissing-include-dirs -Wmissing-parameter-type -Wmissing-prototypes -Wmultichar -Wnested-externs -Wnonnull -Wnormalized=nfc -Wold-style-declaration -Woverflow -Woverlength-strings -Woverride-init -Wpacked -Wpacked-bitfield-compat -Wparentheses -Wpointer-arith -Wpointer-sign -Wpointer-to-int-cast -Wpragmas -Wreturn-type -Wsequence-point -Wshadow -Wstack-protector -Wstrict-aliasing -Wstrict-prototypes -Wsuggest-attribute=const -Wsuggest-attribute=noreturn -Wswitch -Wsync-nand -Wtrampolines -Wtrigraphs -Wtype-limits -Wuninitialized -Wunknown-pragmas -Wunused -Wunused-but-set-parameter -Wunused-but-set-variable -Wunused-function -Wunused-label -Wunused-parameter -Wunused-result -Wunused-value -Wunused-variable -Wvariadic-macros -Wvla -Wvolatile-register-var -Wwrite-strings -fdiagnostics-show-option -funit-at-a-time -Wno-missing-field-initializers -Wno-type-limits -Wno-missing-field-initializers -Wno-unused-parameter -Wno-stack-protector -fdiagnostics-show-option
+ WCHAR_T_SUFFIX = 
+-WERROR_CFLAGS =  -Werror
++WERROR_CFLAGS = 
+ WINDOWS_64_BIT_OFF_T = 0
+ WINDOWS_64_BIT_ST_SIZE = 0
+ WINT_T_SUFFIX = 
