@@ -7,4 +7,4 @@ DISTSUFFIX="tar.xz"
 #  we might implement an ordered list of dependencies, so that first dependency must be compiled before the second, and so on
 #  (ie: in the case when second dependency has dependency upon first dependency)
 #
-DEPENDS="gmp" 
+DEPENDS="gmp nettle libtasn1" 
