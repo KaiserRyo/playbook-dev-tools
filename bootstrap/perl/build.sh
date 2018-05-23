@@ -16,18 +16,15 @@ UNPACKCOMD="tar -xzf"
 
 package_init "$@"
 CONFIGURE_CMD="
-sh ./Configure  -d
-    -Dusecrosscompile 
-    -Dtargetarch=$PBTARGETARCH
-    -Dtargethost=192.168.0.1
-    -Dcc=$PBTARGETARCH-gcc
-    -Dtargetdir=/accounts/1000/shared/documents
+    cd $WORKDIR/.. && \
+    curl -L -O https://github.com/arsv/perl-cross/releases/download/1.1.3/perl-cross-1.1.3.tar.gz && \
+    cd $WORKDIR && \
+    tar --strip-components=1 -zxf ../perl-cross-1.1.3.tar.gz &&
+    ./configure
+    --target=$PBTARGETARCH
+    --prefix=$PREFIX
+    CC=$PBTARGETARCH-gcc
 "
-#    -Dtargethost=<IP of ARM computer> 
-#    -Dtargetuser=<user name>
-#    -Dusrinc=/opt/FriendlyARM/toolschain/4.4.3/arm-none-linux-gnueabi/include/ 
-#    -Dincpth=/opt/FriendlyARM/toolschain/4.4.3/arm-none-linux-gnueabi/include/ 
-#    -Dlibpth=/opt/FriendlyARM/toolschain/4.4.3/lib 
 # ; make CC=$PBTARGETARCH-gcc AR=$PBTARGETARCH-ar RANLIB=$PBTARGETARCH-ranlib CFLAGS=-O3"
 
 package_fetch
