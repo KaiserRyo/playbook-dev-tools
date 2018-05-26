@@ -15,7 +15,8 @@ DISTFILES="https://ftp.gnu.org/gnu/libtasn1/$DISTVER.$DISTSUFFIX"
 UNPACKCOMD="tar -xzf"
 
 package_init "$@"
-CONFIGURE_CMD="./configure 
+CONFIGURE_CMD=" autoconf ; 
+		./configure 
                 --host=$PBHOSTARCH
                 --build=$PBBUILDARCH 
                 --target=$PBTARGETARCH 
@@ -26,7 +27,7 @@ CONFIGURE_CMD="./configure
                 "
 
 package_fetch
-package_patch
+package_patch 1
 package_build
 package_install
 package_bundle
