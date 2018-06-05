@@ -1,4 +1,5 @@
-DISTVER="gnutls-3.3.29"
+DISTVER="gnutls-3.5.18"
+#DISTVER="gnutls-3.3.29"
 DISTSUFFIX="tar.xz"
 
 #
@@ -8,3 +9,8 @@ DISTSUFFIX="tar.xz"
 #  (ie: in the case when second dependency has dependency upon first dependency)
 #
 DEPENDS="gmp nettle libtasn1" 
+
+#
+# BUILD_DEPENDS is only informative for the moment ..
+#
+BUILD_DEPENDS="automake autogen"
