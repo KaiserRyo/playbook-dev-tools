@@ -1,0 +1,13 @@
+--- libgpg-error-1.32.orig/src/gpg-error.h.in	2018-08-31 19:44:40.000000000 +0200
++++ libgpg-error-1.32/src/gpg-error.h.in	2018-08-31 19:44:56.000000000 +0200
+@@ -58,8 +58,10 @@
+ 
+ #ifndef GPG_ERROR_H
+ #define GPG_ERROR_H 1
++#endif
+ #ifndef GPGRT_H
+ #define GPGRT_H 1
++#endif
+ 
+ #include <stddef.h>
+ #include <stdio.h>
