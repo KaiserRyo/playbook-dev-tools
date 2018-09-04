@@ -25,7 +25,7 @@ CONFIGURE_CMD="./configure
                 "
 
 package_fetch
-package_patch 1
+package_patch 2
 package_build
 package_install
 package_bundle
