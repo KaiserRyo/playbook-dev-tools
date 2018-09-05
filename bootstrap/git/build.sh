@@ -1,4 +1,4 @@
-#!/usr/bin/env bash -x
+#!/usr/bin/env bash
 
 # This code Copyright 2012 Todd Mortimer <todd.mortimer@gmail.com>
 #
@@ -8,9 +8,10 @@
 
 set -e
 source ../../lib.sh
-source ./vars.sh
 TASK=fetch
 
+DISTVER="git-2.9.5"
+DISTSUFFIX="tar.xz"
 
 DISTFILES="https://mirrors.edge.kernel.org/pub/software/scm/git/$DISTVER.$DISTSUFFIX"
 UNPACKCOMD="tar -xJf"
@@ -23,7 +24,7 @@ CONFIGURE_CMD="./configure
                 --target=$PBTARGETARCH 
                 --prefix=$PREFIX 
                 CC=$PBTARGETARCH-gcc
-		CFLAGS=\"-O3 -DNO_APPLE_COMMON_CRYPTO\"
+		CFLAGS=\"-O3 -DNO_APPLE_COMMON_CRYPTO -DNO_GETTEXT\"
 		LDFLAGS=-liconv
                 "
 		#--without-iconv
