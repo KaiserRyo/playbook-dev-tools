@@ -8,6 +8,11 @@
 # Olivier Kaloudoff <olivier.kaloudoff@gmail.com>, 2018
 #
 
+#
+# Note: this build is being put on hold, cause it needs GCC-4.9 at least for Atomic operations
+#
+
+#https://stackoverflow.com/questions/20326604/stdatomic-h-in-gcc-4-8
 
 set -e
 source ../../lib.sh
