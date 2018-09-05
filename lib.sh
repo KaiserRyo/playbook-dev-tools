@@ -1,4 +1,5 @@
 # common functions for the build tools
+#set -x
 
 PBHOSTARCH=arm-unknown-nto-qnx8.0.0eabi
 PBBUILDARCH=`gcc -dumpmachine`
@@ -41,6 +42,19 @@ process_args()
     esac
   done
 
+}
+
+function check_required_binaries()
+{
+	I=0
+	while [ -z != ${BUILD_DEP_BINS[I]} ];
+	do
+		type $BUILD_DEP_BINS[$I] 2> /dev/null > /dev/null || {
+			echo "Fatal: binary ${BUILD_DEP_BINS[$I]} not found. Required for build"
+			exit 1
+		}
+		let I=$(($I+1))
+	done
 }
 
 function source_bbtools()
@@ -156,8 +170,7 @@ function init()
 
 function bootstrap()
 {
-  ALLPROGS="gcc coreutils diffutils grep make patch gzip bzip2 bison gettext findutils groff man file openssh"
-  #ALLPROGS="tar gdbm yaml ruby libevent tmux sqlite fakeroot"
+  ALLPROGS="libmpdclient mpd cronie protobuf khal protobuf mosh weechat SDL bash-static libgpg-error libgcrypt tgl sqlite libuuid taskwarrior openssl nettle libtasn1 gnutls syncthing gmp libffi nettle coreutils gettext git perl vim seafile libreadline libevent zeromq openssh coreutils grep gzip bzip2 jansson libmpg123 gdb xz cflow libevent gcc diffutils make patch bison gettext findutils groff man file tg ffmpeg audioplayer $NEWPROGS"
 
   cd "$BOOTSTRAPDIR"
   for dir in $ALLPROGS
@@ -306,5 +319,6 @@ fi
 # we call configure_dirs here so when the library is included,
 # the directories get set up early.
 configure_dirs
+
 
 
