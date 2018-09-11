@@ -24,7 +24,7 @@ CONFIGURE_CMD="./configure
                 --target=$PBTARGETARCH 
                 --prefix=$PREFIX 
                 CC=$PBTARGETARCH-gcc
-		CFLAGS=\"-O3 -DNO_APPLE_COMMON_CRYPTO -DNO_GETTEXT\"
+		CFLAGS=\"-fPIC -O3 -DNO_APPLE_COMMON_CRYPTO -DNO_GETTEXT -DSA_RESTART=0 -DNO_D_TYPE_IN_DIRENT\"
 		LDFLAGS=-liconv
                 "
 		#--without-iconv
