@@ -12,6 +12,7 @@ TASK=fetch
 
 DISTVER="git-2.9.5"
 DISTSUFFIX="tar.xz"
+BUILD_DEPENDS="msgfmt"
 
 DISTFILES="https://mirrors.edge.kernel.org/pub/software/scm/git/$DISTVER.$DISTSUFFIX"
 UNPACKCOMD="tar -xJf"
