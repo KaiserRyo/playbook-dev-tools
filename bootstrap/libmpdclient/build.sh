@@ -12,25 +12,28 @@ DISTVER="libmpdclient-2.15"
 DISTSUFFIX="tar.xz"
 TASK=fetch
 
-BUILD_DEP_BINS=(/usr/local/bin/ninja)   # be carefull, bash array syntax is separated by spaces
+BUILD_DEP_BINS=(ninja glibtoolize doxygen)   # be carefull, bash array syntax is separated by spaces
 check_required_binaries 
 
 DISTFILES="http://www.musicpd.org/download/libmpdclient/2/libmpdclient-2.15.tar.xz"
 UNPACKCOMD="tar -xJf"
 TASK=fetch
 package_init "$@"
-CONFIGURE_CMD="./configure 
+CONFIGURE_CMD="chmod 755 *sh configure; ./autogen.sh; ./configure
+		--enable-shared 
+		--enable-static 
+		--disable-documentation
                 --host=$PBHOSTARCH
                 --build=$PBBUILDARCH 
                 --target=$PBTARGETARCH 
                 --prefix=$PREFIX 
                 CC=$PBTARGETARCH-gcc
-		CFLAGS=-O3
+		CFLAGS=\"-O2 -pipe\"
+		CXXFLAGS=\"-O2 -pipe -fno-exceptions -fno-rtti\"
                 "
 
-
 package_fetch
-package_patch
+package_patch 1
 
 if [ "$TASK" == "build" ]
 then
@@ -43,11 +46,6 @@ then
   #fi
   # configure
   eval $CONFIGURE_CMD
-
-  for apatch in $EXECDIR/post-conf-patches/*
-   do
-	 patch  < $apatch
-   done
 
   eval $MAKE_PREFIX make $MYMAKEFLAGS || \
         eval $MAKE_PREFIX make
