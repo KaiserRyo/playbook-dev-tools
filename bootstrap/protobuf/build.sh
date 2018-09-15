@@ -14,9 +14,14 @@ set -e
 source ../../lib.sh
 TASK=fetch
 
+BUILD_DEPENDS=(protoc)  # syntax is : (elem1 elem2 elem3 etc.), ie: bash array
+check_required_binaries
+
 DISTVER="protobuf"
 DISTSUFFIX="git"
 DISTFILES="https://github.com/berryamin/$DISTVER.$DISTSUFFIX"
+#GITVER="v3.5.2"
+GITVER="v3.4.1"
 #UNPACKCOMD="tar -xJf"
 package_init "$@"
 CONFIGURE_CMD=" ./autogen.sh; ./configure
@@ -25,7 +30,9 @@ CONFIGURE_CMD=" ./autogen.sh; ./configure
                 --host=$PBHOSTARCH
                 --build=$PBBUILDARCH
                 --target=$PBTARGETARCH
-	 	--prefix=$PREFIX"
+	 	--prefix=$PREFIX
+		--with-protoc=/usr/local/bin/protoc
+		"
 
 if [ "$TASK" == "fetch" ]
 then
@@ -33,6 +40,7 @@ then
   # delete old version
   rm -rf "$DISTVER"
   git clone $DISTFILES
+  git checkout $GITVER
   TASK=patch
 fi
 
