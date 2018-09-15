@@ -47,9 +47,9 @@ process_args()
 function check_required_binaries()
 {
 	I=0
-	while [ -z != ${BUILD_DEP_BINS[I]} ];
+	while [ -z != ${BUILD_DEP_BINS[$I]} ];
 	do
-		type $BUILD_DEP_BINS[$I] 2> /dev/null > /dev/null || {
+		type ${BUILD_DEP_BINS[$I]} || { 
 			echo "Fatal: binary ${BUILD_DEP_BINS[$I]} not found. Required for build"
 			exit 1
 		}
