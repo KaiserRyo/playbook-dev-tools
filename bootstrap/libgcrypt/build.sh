@@ -8,7 +8,9 @@
 
 set -e
 source ../../lib.sh
-source ./vars.sh
+
+DISTVER="libgcrypt"
+DISTSUFFIX="git"
 TASK=fetch
 
 package_init "$@"
@@ -18,9 +20,14 @@ CONFIGURE_CMD="./autogen.sh ;
                 --build=$PBBUILDARCH 
                 --target=$PBTARGETARCH 
                 --prefix=$PREFIX 
+		--with-libgpg-error-prefix=../libgpg-error-1.32
                 CC=$PBTARGETARCH-gcc
+		CFLAGS=\"-I../libgpg-error-1.32/src -I../../libgpg-error-1.32/src \"
+		LDFLAGS=\" -lgpg-error -lsocket -L/Users/testuser/bb/playbook-dev-tools/work/libgpg-error-1.32/src/.libs\"
                 MAKEINFO='/usr/bin/makeinfo --force'
                 "
+
+#-L../libgpg-error-1.32/src/.libs
 
 if [ "$TASK" == "fetch" ]
 then

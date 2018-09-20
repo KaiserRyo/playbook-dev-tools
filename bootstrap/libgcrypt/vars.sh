@@ -1,2 +1,0 @@
-DISTVER="libgcrypt"
-DISTSUFFIX="git"
