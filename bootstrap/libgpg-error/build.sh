@@ -8,7 +8,16 @@
 
 set -e
 source ../../lib.sh
-source ./vars.sh
+
+DISTVER="libgpg-error-1.32"
+DISTSUFFIX="tar.gz"
+DISTFILES="ftp://ftp.gnupg.org/gcrypt/libgpg-error/$DISTVER.$DISTSUFFIX"
+UNPACKCOMD="tar -xzf"
+#PATH=$PATH:/usr/local/Cellar/gettext/0.19.4/bin
+
+BUILD_DEP_BINS=(gettext)   # be carefull, bash array syntax is separated by spaces
+check_required_binaries
+
 TASK=fetch
 
 package_init "$@"
