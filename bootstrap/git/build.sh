@@ -10,9 +10,10 @@ set -e
 source ../../lib.sh
 TASK=fetch
 
-DISTVER="git-2.9.5"
+DISTVER="git-2.12.5"
 DISTSUFFIX="tar.xz"
-BUILD_DEPENDS="msgfmt"
+BUILD_DEP_BINS=(msgfmt)
+check_required_binaries
 
 DISTFILES="https://mirrors.edge.kernel.org/pub/software/scm/git/$DISTVER.$DISTSUFFIX"
 UNPACKCOMD="tar -xJf"
