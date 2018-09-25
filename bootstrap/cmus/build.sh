@@ -10,9 +10,12 @@
 
 #
 # Note: this build is being put on hold, cause it needs GCC-4.9 at least for Atomic operations
+# gcc 4.8.1 and newer already support Atomic operations .. So we should be able to compile !
+# https://gcc.gnu.org/gcc-4.8/cxx0x_status.html
+# 
+# stdatomic.h is missing in 4.8.3, maybe we should just copy/paste it from 4.9
+# https://stackoverflow.com/questions/20326604/stdatomic-h-in-gcc-4-8
 #
-
-#https://stackoverflow.com/questions/20326604/stdatomic-h-in-gcc-4-8
 
 set -e
 source ../../lib.sh
@@ -26,7 +29,10 @@ UNPACKCOMD="tar -xJf"
 TASK=fetch
 package_init "$@"
 CONFIGURE_CMD="./configure 
-                CC=$PBTARGETARCH-gcc
+                CC=\"arm-unknown-nto-qnx8.0.0eabi-gcc-4.8.3\"
+                AR=\"arm-unknown-nto-qnx8.0.0eabi-gcc-ar-4.8.3\"
+                CPP=\"arm-unknown-nto-qnx8.0.0eabi-cpp-4.8.3\"
+                CXX=\"arm-unknown-nto-qnx8.0.0eabi-g++-4.8.3\"
                 "
 
 if [ "$TASK" == "fetch" ]
