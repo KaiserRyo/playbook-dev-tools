@@ -9,20 +9,23 @@
 set -e
 source ../../lib.sh
 
+BUILD_DEP_BINS=(aclocal automake autoconf)
+check_required_binaries
+
 DISTVER="alpine"
 DISTSUFFIX="git"
 GITVER="master"
 TASK=fetch
 
 package_init "$@"
-CONFIGURE_CMD=" autoconf;
+CONFIGURE_CMD=" aclocal; automake ; autoconf;
 		 ./configure
                 --host=$PBHOSTARCH
                 --build=$PBBUILDARCH 
                 --target=$PBTARGETARCH 
                 --prefix=$PREFIX 
                 CC=$PBTARGETARCH-gcc
-		CFLAGS=\"\"
+		CFLAGS=\"-I/tmp/tmp -I/Applications/Momentics.app/target_10_3_1_995/qnx6/usr/include/openssl\"
 		LDFLAGS=\"\"
                 "
 
