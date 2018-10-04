@@ -22,9 +22,13 @@ CONFIGURE_CMD="./configure
                 --build=$PBBUILDARCH 
                 --target=$PBTARGETARCH 
                 --prefix=$PREFIX 
-                CC=$PBTARGETARCH-gcc
+		CC=\"arm-unknown-nto-qnx8.0.0eabi-gcc-4.8.3\"
+		AR=\"arm-unknown-nto-qnx8.0.0eabi-gcc-ar-4.8.3\"
+		CPP=\"arm-unknown-nto-qnx8.0.0eabi-cpp-4.8.3\"
+		CXX=\"arm-unknown-nto-qnx8.0.0eabi-g++-4.8.3\"
 		CFLAGS=-O3
                 "
+#CC=$PBTARGETARCH-gcc
 
 package_fetch
 package_patch
