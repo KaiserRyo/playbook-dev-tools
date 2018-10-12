@@ -8,13 +8,13 @@
 
 set -e
 source ../../lib.sh
-DISTVER="rsync-3.1.3"
-DISTSUFFIX="tar.gz"
+DISTVER="flac-1.3.2"
+DISTSUFFIX="tar.xz"
 TASK=fetch
 
 
-DISTFILES="https://download.samba.org/pub/rsync/src/$DISTVER.$DISTSUFFIX"
-UNPACKCOMD="tar -xzf"
+DISTFILES="https://ftp.osuosl.org/pub/xiph/releases/flac/$DISTVER.$DISTSUFFIX"
+UNPACKCOMD="tar -xJf"
 TASK=fetch
 package_init "$@"
 CONFIGURE_CMD="./configure 
@@ -24,33 +24,12 @@ CONFIGURE_CMD="./configure
                 --prefix=$PREFIX 
                 CC=$PBTARGETARCH-gcc
 		CFLAGS=-O3
+		--disable-ogg
                 "
 
 package_fetch
 package_patch
-
-if [ "$TASK" == "build" ]
-then
-  echo "Building"
-  cd "$WORKDIR"
-  # clean up if we have a previous build
-  #if [ -e "Makefile" ]; then
-  #  make clean || true
-  #  make distclean || true
-  #fi
-  # configure
-  eval $CONFIGURE_CMD
-
-  for apatch in $EXECDIR/post-conf-patches/*
-   do
-	patch -p0 < $apatch
-   done
-
-  eval $MAKE_PREFIX make $MYMAKEFLAGS || \
-        eval $MAKE_PREFIX make
-  TASK=install
-fi
-
+package_build
 package_install
 package_bundle
 
