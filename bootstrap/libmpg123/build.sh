@@ -11,7 +11,8 @@
 
 set -e
 source ../../lib.sh
-source ./vars.sh
+DISTVER="libmpg123-bb10"
+DISTSUFFIX="git"
 TASK=fetch
 
 DISTFILES="https://github.com/berryamin/$DISTVER.$DISTSUFFIX"
