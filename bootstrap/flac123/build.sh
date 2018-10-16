@@ -28,7 +28,8 @@ CONFIGURE_CMD="./configure
 		AR=\"arm-unknown-nto-qnx8.0.0eabi-gcc-ar-4.6.3\"
 		CPP=\"arm-unknown-nto-qnx8.0.0eabi-cpp-4.6.3\"
 		CXX=\"arm-unknown-nto-qnx8.0.0eabi-g++-4.6.3\"
-		CFLAGS=-O3
+		CFLAGS=\"-O3 -I../flac-1.3.2/include\"
+		LDFLAGS=\"-O3 -L../flac-1.3.2/src/libFLAC/.libs -lFLAC\"
                 "
 if [ "$TASK" == "fetch" ]
 then
