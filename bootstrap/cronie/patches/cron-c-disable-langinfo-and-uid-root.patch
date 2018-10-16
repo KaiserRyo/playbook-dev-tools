@@ -1,5 +1,5 @@
 --- work/cronie-1.5.2.orig/src/cron.c	2017-09-14 13:53:21.000000000 +0200
-+++ work/cronie-1.5.2/src/cron.c	2018-09-04 08:49:20.000000000 +0200
++++ work/cronie-1.5.2/src/cron.c	2018-09-05 19:30:09.000000000 +0200
 @@ -29,7 +29,6 @@
  #define	MAIN_PROGRAM
  
@@ -16,6 +16,15 @@
  
  #if defined(BSD)
  	setlinebuf(stdout);
+@@ -245,7 +243,7 @@
+ 	(void) sigaction(SIGTERM, &sact, NULL);
+ 
+ 	acquire_daemonlock(0);
+-	set_cron_uid();
++	//set_cron_uid();
+ 	check_spool_dir();
+ 
+ 	if (ChangePath) {
 @@ -256,15 +254,7 @@
  		}
  	}
