@@ -1,10 +1,9 @@
---- git-2.9.5.orig/configure.ac	2018-05-18 01:27:53.000000000 +0200
-+++ git-2.9.5/configure.ac	2018-05-18 01:29:38.000000000 +0200
-@@ -855,64 +855,6 @@
- 	NO_REGEX=YesPlease
+--- git-2.16.5.orig/configure.ac	2018-11-07 08:37:39.000000000 +0100
++++ git-2.16.5/configure.ac	2018-11-07 08:38:31.000000000 +0100
+@@ -914,40 +914,6 @@
  fi
  GIT_CONF_SUBST([NO_REGEX])
--#
+ #
 -# Define SNPRINTF_RETURNS_BOGUS if your are on a system which snprintf()
 -# or vsnprintf() return -1 instead of number of characters which would
 -# have been written to the final string if enough space had been available.
@@ -39,29 +38,6 @@
 -fi
 -GIT_CONF_SUBST([SNPRINTF_RETURNS_BOGUS])
 -#
--# Define NEEDS_MODE_TRANSLATION if your OS strays from the typical file type
--# bits in mode values.
--AC_CACHE_CHECK([whether the platform uses typical file type bits],
-- [ac_cv_sane_mode_bits], [
--AC_EGREP_CPP(yippeeyeswehaveit,
--	AC_LANG_PROGRAM([AC_INCLUDES_DEFAULT],
--[#if S_IFMT == 0170000 && \
--	S_IFREG == 0100000 && S_IFDIR == 0040000 && S_IFLNK == 0120000 && \
--	S_IFBLK == 0060000 && S_IFCHR == 0020000 && \
--	S_IFIFO == 0010000 && S_IFSOCK == 0140000
--yippeeyeswehaveit
--#endif
--]),
--	[ac_cv_sane_mode_bits=yes],
--	[ac_cv_sane_mode_bits=no])
--])
--if test $ac_cv_sane_mode_bits = yes; then
--	NEEDS_MODE_TRANSLATION=
--else
--	NEEDS_MODE_TRANSLATION=UnfortunatelyYes
--fi
--GIT_CONF_SUBST([NEEDS_MODE_TRANSLATION])
--
- 
- ## Checks for library functions.
- ## (in default C library and libraries checked by AC_CHECK_LIB)
+ # Define NEEDS_MODE_TRANSLATION if your OS strays from the typical file type
+ # bits in mode values.
+ AC_CACHE_CHECK([whether the platform uses typical file type bits],

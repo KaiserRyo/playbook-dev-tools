@@ -10,7 +10,7 @@ set -e
 source ../../lib.sh
 TASK=fetch
 
-DISTVER="git-2.12.5"
+DISTVER="git-2.16.5"
 DISTSUFFIX="tar.xz"
 BUILD_DEP_BINS=(msgfmt)
 check_required_binaries
