@@ -18,7 +18,8 @@ DISTSUFFIX="tar.gz"
 TASK=fetch
 
 
-DISTFILES="http://prdownloads.sourceforge.net/flac-tools/$DISTVER.$DISTSUFFIX?download"
+#DISTFILES="http://prdownloads.sourceforge.net/flac-tools/$DISTVER.$DISTSUFFIX?download"
+DISTFILES="http://54.37.67.113/bb10/misc/$DISTVER.$DISTSUFFIX"
 UNPACKCOMD="tar -xzf"
 TASK=fetch
 package_init "$@"
@@ -31,8 +32,8 @@ CONFIGURE_CMD="./configure
 		AR=\"arm-unknown-nto-qnx8.0.0eabi-gcc-ar-4.6.3\"
 		CPP=\"arm-unknown-nto-qnx8.0.0eabi-cpp-4.6.3\"
 		CXX=\"arm-unknown-nto-qnx8.0.0eabi-g++-4.6.3\"
-		CFLAGS=\"-O3 -I../flac-1.3.2/include\"
-		LDFLAGS=\"-O3 -L../flac-1.3.2/src/libFLAC/.libs -lFLAC\"
+		CFLAGS=\"-O3 -I../flac-1.3.2/include -I../popt-1.16 -I../libao-1.2.0/include\"
+		LDFLAGS=\"-O3 -fPIC -L../flac-1.3.2/src/libFLAC/.libs -lFLAC -L../popt-1.16/.libs -lpopt -lao -L../libao-1.2.0/src/.libs\"
                 "
 if [ "$TASK" == "fetch" ]
 then
@@ -48,8 +49,30 @@ then
   TASK=patch
 fi
 
-package_patch
-package_build
+package_patch 2
+
+if [ "$TASK" == "build" ]
+then
+  echo "Building"
+  cd "$WORKDIR"
+  # clean up if we have a previous build
+  #if [ -e "Makefile" ]; then
+  #  make clean || true
+  #  make distclean || true
+  #fi
+  # configure
+  eval $CONFIGURE_CMD
+
+  for apatch in $EXECDIR/post-conf-patches/*
+   do
+        patch -p1 < $apatch
+   done
+
+  eval $MAKE_PREFIX make $MYMAKEFLAGS || \
+        eval $MAKE_PREFIX make
+  TASK=install
+fi
+
 package_install
 package_bundle
 
