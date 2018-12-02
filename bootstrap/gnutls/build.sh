@@ -29,12 +29,12 @@ CONFIGURE_CMD="./configure
 		--disable-libdane
 		--disable-psk-authentication
 		--without-tpm
-		--with-nettle-mini
                 CC=$PBTARGETARCH-gcc 
-                CFLAGS=\"-I$PWD -I$WORKROOT/nettle-3.1 -I$WORKROOT/gmp-6.1.2\"
-                LDFLAGS=\"-lnettle -lhogweed -lgmp -L$WORKROOT/nettle-3.1/.lib -L$WORKROOT/gmp-6.1.2/.libs\"
+                CFLAGS=\"-I$PWD -I$WORKROOT/nettle-3.4 -I$WORKROOT/gmp-6.1.2\"
+                LDFLAGS=\"-lnettle -lhogweed -lgmp -L$WORKROOT/nettle-3.4/.lib -L$WORKROOT/gmp-6.1.2/.libs\"
                 "
 	 	
+#		--with-nettle-mini
 #		NETTLE_CFLAGS=\"-I$WORKROOT/nettle-3.1\"
 #		NETTLE_LDFLAGS=\"-L$WORKROOT/nettle-3.1/.lib -lnettle\"
 
