@@ -14,13 +14,23 @@ package_init "$@"
 CONFIGURE_CMD="PBTARGETARCH=\"$PBTARGETARCH\"
               PREFIX=\"$PREFIX\"
               QNX_TARGET=\"$QNX_TARGET\"
-              LIBUUID_DIR=\"$ARCHIVEDIR/libuuid-1.0.3/$PREFIX\"
+              LIBUUID_DIR=\"$WORKDIR/libuuid-1.0.3/\"
               cmake \
-	      -DGNUTLS_CFLAGS=\"-I$WORKDIR/gnutls-3.5.18/src\" \
-	      -DGNUTLS_LDFLAGS=\"-L$WORKDIR/gnutls-3.5.18/lib/.libs -lgnutls\" \
+	      -DGNUTLS_INCLUDE_DIR=\"$WORKDIR/gnutls-3.5.18/src\"
+	      -DGNUTLS_LIBRARY=\"$WORKDIR/gnutls-3.5.18/lib/.libs\"
+	      -DCMAKE_SHARED_LINKER_FLAGS=\"-L$WORKDIR/gnutls-3.5.18/lib/.libs -lgnutls\" \
               -DCMAKE_TOOLCHAIN_FILE=\"$EXECDIR/bb10.toolchain.cmake\" \
               -DENABLE_SYNC=OFF \
               -DCMAKE_BUILD_TYPE=release ."
+
+              #LIBUUID_DIR=\"$ARCHIVEDIR/libuuid-1.0.3/$PREFIX\"
+
+	      #-DCMAKE_C_FLAGS=\"-I$WORKDIR/gnutls-3.5.18/src\" \
+
+	      #GNUTLS_CFLAGS=\"-I$WORKDIR/gnutls-3.5.18/src\" \
+	      #GNUTLS_LDFLAGS=\"-L$WORKDIR/gnutls-3.5.18/lib/.libs -lgnutls\" \
+	      #-DGNUTLS_CFLAGS=\"-I$WORKDIR/gnutls-3.5.18/src\" \
+	      #-DGNUTLS_LDFLAGS=\"-L$WORKDIR/gnutls-3.5.18/lib/.libs -lgnutls\" \
 
 package_fetch
 package_patch
