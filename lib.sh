@@ -170,7 +170,7 @@ function init()
 
 function bootstrap()
 {
-  ALLPROGS="flac flac123 nss rpm alpine ruby git bash-static libgcrypt tgl libmpdclient mpd cronie protobuf khal protobuf mosh weechat SDL bash-static libgpg-error  sqlite libuuid taskwarrior openssl nettle libtasn1 gnutls syncthing gmp libffi nettle coreutils gettext perl vim seafile libreadline libevent zeromq openssh coreutils grep gzip bzip2 jansson libmpg123 gdb xz cflow libevent gcc diffutils make patch bison gettext findutils groff man file tg ffmpeg audioplayer $NEWPROGS"
+  ALLPROGS="libuuid taskwarrior flac flac123 nss rpm alpine ruby git bash-static libgcrypt tgl libmpdclient mpd cronie protobuf khal protobuf mosh weechat SDL bash-static libgpg-error sqlite openssl nettle libtasn1 syncthing gmp libffi nettle coreutils gettext perl vim seafile libreadline libevent zeromq openssh coreutils grep gzip bzip2 jansson libmpg123 gdb xz cflow libevent gcc diffutils make patch bison gettext findutils groff man file tg ffmpeg audioplayer $NEWPROGS"
 
   cd "$BOOTSTRAPDIR"
   for dir in $ALLPROGS
